@@ -85,22 +85,39 @@ router.get('/survey/:id/:sub', function (req, res, next) {
 
 router.post('/survey/:id/:sub', function(req, res, next){
   // console.log(req.body);
-  let result = req.body;
+  let result = JSON.parse(JSON.stringify(req.body));
   result.id = req.params.id;
   result.sub = req.params.sub;
   result.time = new Date();
   result.ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
   console.log(result);
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("survey");
+
+    dbo.collection("result").insertOne(result, function(err, res) {
+      if (err) throw err;
+      console.log("Document inserted:"+result);
+      db.close();
+    });
+  });
+
   res.redirect('/survey/'+req.params.id);
 });
 
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true});
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  // we're connected!
-  console.log("Connected to mongo!");
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/survey";
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  console.log("Database created!");
+  var dbo = db.db("survey");
+  dbo.createCollection("result", function(err, res) {
+    if (err) throw err;
+    console.log("Collection created!");
+    db.close();
+  });
 });
+
+
 
 module.exports = router;

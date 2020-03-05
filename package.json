@@ -13,6 +13,6 @@
     "morgan": "~1.9.1",
     "pug": "2.0.0-beta11",
     "body-parser": "*",
-    "mongoose": "^5.9.3"
+    "mongodb": "^3.5.4"
   }
 }
