@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1= title
+  div(class="list-group")
+    a(class="list-group-item list-group-item-primary") Surveys
+    each val in subdomains
+      a(href='/survey/'+val class="list-group-item")= val
