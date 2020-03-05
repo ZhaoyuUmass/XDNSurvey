@@ -18,6 +18,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+var bodyParser = require('body-parser');
+var jsonParser = bodyParser.json();
+var urlencodeParser = bodyParser.urlencoded({ extended: false });
+app.use(urlencodeParser);
+app.use(jsonParser);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

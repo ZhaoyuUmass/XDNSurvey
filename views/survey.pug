@@ -2,3 +2,7 @@ extends layout
 
 block content
     h1= title
+    div(class="list-group")
+        h4(class="list-group-item list-group-item-primary") Connect to the following servers and click the link to finish the corresponding questionnaire.
+        each val in survey
+            a(href='/survey/'+id+'/'+val class="list-group-item")= val+".xdnfirst.xyz"

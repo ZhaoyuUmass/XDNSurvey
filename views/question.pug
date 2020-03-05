@@ -1,0 +1,52 @@
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        script(type="text/javascript").
+            function validateForm() {
+                var finished = true;
+                for (var i = 1; i < 6; i++) {
+                    if (document.getElementById("answer")["inlineRadioOptions" + i].value == 0)
+                        finished = false;
+                }
+                // window.alert("finished:" + finished);
+                if (!finished) {
+                    window.alert("Please finish filling out the form before submission.");
+                    return false;
+                }
+                if (confirm('Do you want to submit?')) {
+                    document.getElementById("answer").submit();
+                } else {
+                    return false;
+                }
+            }
+    body
+
+        h3=title
+        hr
+        div
+            h4= 'Server ('+sub+".xdnfirst.xyz)"
+        hr
+        form(class="form-group" id="answer" action="/survey/"+id+"/"+sub method="POST" onsubmit="return validateForm()")
+            each question,index in questions
+                div(class="card")
+                    div(class="card-body")
+                        p(class="lead")=question
+                        div(class='form-check form-check-inline')
+                            input(class="form-check-input" type="radio" name="inlineRadioOptions"+index id="inlineRadio1"+index value=1)
+                            label(class="form-check-label" for="inlineRadio1") 1 (Strongly dissatisfied)
+                        each val in [ 2, 3, 4, 5, 6, 7, 8, 9]
+                            div(class='form-check form-check-inline')
+                                input(class="form-check-input" type="radio" name="inlineRadioOptions"+index id="inlineRadio"+val+index value=val)
+                                label(class="form-check-label" for="inlineRadio"+val)=val
+                        div(class='form-check form-check-inline')
+                            input(class="form-check-input" type="radio" name="inlineRadioOptions"+index id="inlineRadio10"+index value=10)
+                            label(class="form-check-label" for="inlineRadio10") 10 (Strongly satisfied)
+            div
+                button(type="submit" class="btn btn-primary") Submit
+                div(class="text-right")
+                    // button(href="javascript:history.back()" class="btn btn-secondary") Back
+                    a(class="lead" href="javascript:history.back()") Go Back
+
