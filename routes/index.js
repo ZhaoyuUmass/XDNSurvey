@@ -6,8 +6,9 @@ const surveys = {};
 const TOTAL_SURVEY = 100;
 const TOTAL_QUESTIONNAIRE = 4;
 
+
 var rl = require('readline').createInterface({
-  input: require('fs').createReadStream('cloud.txt')
+  input: require('fs').createReadStream('/tmp/cloud.txt')
 });
 
 rl.on('line', function (line) {
@@ -39,6 +40,7 @@ rl.on('line', function (line) {
     }
   }
 });
+
 
 /**
  * Shuffles array in place. ES6 version
