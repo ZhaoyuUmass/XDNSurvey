@@ -3,6 +3,17 @@ extends layout
 block content
   h1= title
   div(class="list-group")
+    table(class="table")
+      thead
+        th(scope="col") #
+        th(scope="col") #
+        th(scope="col") #
+      tbody
+        -for(var prop in survey)
+          tr
+            th(scope="row") #
+            th(scope="row") #{survey[prop]['ping']}
+            th(scope="row") #{survey[prop]['inlineRadioOptions4']}
     a(class="list-group-item list-group-item-primary") Result
     -var ob = survey
     -for(var prop in ob)
