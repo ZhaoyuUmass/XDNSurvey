@@ -4,6 +4,6 @@ block content
   h1= title
   div(class="list-group")
     a(class="list-group-item list-group-item-primary") Result
-    -var ob = JSON.parse(survey)
-    -for(var prop in ob)
-      p(class="list-group-item") #{ob[prop]}
+    each val,index in survey
+      p(class="list-group-item")
+        - JSON.stringify(val)
