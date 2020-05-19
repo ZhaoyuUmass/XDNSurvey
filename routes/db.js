@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
             if (err) throw err;
             console.log("result:"+JSON.stringify(result));
 
-            res.render('result', {survey: JSON.stringify(result)});
+            res.render('result', {survey: result});
         });
     });
 
