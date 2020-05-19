@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
         dbo.collection("result").find().toArray( function(err, result) {
             if (err) throw err;
             console.log("result:"+result);
-            res.render('result', {survey: result});
+            res.render('result', {survey: JSON.parse(result)});
         });
     });
 
