@@ -6,4 +6,4 @@ block content
     a(class="list-group-item list-group-item-primary") Result
     -var ob = JSON.parse(JSON.stringify(survey))
     -for(var prop in ob)
-      p(class="list-group-item") #{prop}
+      p(class="list-group-item") #{prop}, JSON.stringify(#{ob[prop]})
