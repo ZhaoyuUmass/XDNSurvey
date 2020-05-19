@@ -10,8 +10,9 @@ router.get('/', function(req, res) {
         dbo.collection("result").find().toArray( function(err, result) {
             if (err) throw err;
             console.log("result:"+JSON.stringify(result));
-
-            res.render('result', {survey: result.forEach(JSON.stringify)});
+            result = result.forEach(JSON.stringify);
+            console.log("result:"+result);
+            res.render('result', {survey: result});
         });
     });
 
