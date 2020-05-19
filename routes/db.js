@@ -7,10 +7,10 @@ router.get('/', function(req, res) {
         if (err) throw err;
         var dbo = db.db("survey");
 
-        dbo.collection("result").find( function(err, r) {
+        dbo.collection("result").find().toArray( function(err, result) {
             if (err) throw err;
-            console.log("result:"+r);
-            res.render('result', {survey: r});
+            console.log("result:"+result);
+            res.render('result', {survey: result});
         });
     });
 
