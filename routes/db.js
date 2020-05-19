@@ -9,9 +9,9 @@ router.get('/', function(req, res) {
 
         dbo.collection("result").find().toArray( function(err, result) {
             if (err) throw err;
-            console.log("result:"+JSON.stringify(result));
-            result.forEach(JSON.stringify);
-            console.log("result:"+result);
+            // console.log("result:"+JSON.stringify(result));
+            // result.forEach(JSON.stringify);
+            // console.log("result:"+result);
             res.render('result', {survey: result});
         });
     });
@@ -21,14 +21,14 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res){
     var result = req.body;
     result.time = new Date().getTime();
-    console.log(result);
+    // console.log(result);
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("survey");
 
         dbo.collection("result").insertOne(result, function(err, res) {
             if (err) throw err;
-            console.log("Document inserted:"+result);
+            // console.log("Document inserted:"+result);
             // db.close();
         });
     });
