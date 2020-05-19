@@ -3,7 +3,17 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res) {
-  res.send('respond with a resource');
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("survey");
+
+        dbo.collection("result").find( function(err, r) {
+            if (err) throw err;
+            console.log("result:"+r);
+            res.render('result', {survey: r});
+        });
+    });
+
 });
 
 router.post('/', function(req, res){
