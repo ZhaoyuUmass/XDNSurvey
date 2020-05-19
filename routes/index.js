@@ -93,6 +93,7 @@ router.post('/survey/:id/:sub', function(req, res, next){
   result.time = new Date();
   result.ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
   console.log(result);
+  /*
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db("survey");
@@ -103,21 +104,9 @@ router.post('/survey/:id/:sub', function(req, res, next){
       db.close();
     });
   });
+  */
 
   res.redirect('/survey/'+req.params.id);
-});
-
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/survey";
-MongoClient.connect(url, function(err, db) {
-  if (err) throw err;
-  console.log("Database created!");
-  var dbo = db.db("survey");
-  dbo.createCollection("result", function(err, res) {
-    if (err) throw err;
-    console.log("Collection created!");
-    db.close();
-  });
 });
 
 
