@@ -4,5 +4,5 @@ block content
   h1= title
   div(class="list-group")
     a(class="list-group-item list-group-item-primary") Result
-    -for(var prop in survey)
-      p(class="list-group-item") #{prop}, #{survey[prop]}
+    each val,index in survey
+      p(class="list-group-item")= val
