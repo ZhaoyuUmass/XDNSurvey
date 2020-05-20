@@ -6,12 +6,12 @@ block content
     h3(class="list-group-item list-group-item-primary") Result
     table(class="table")
       thead
-        th(scope="col") #
+        th(scope="col") ID
         th(scope="col") Latency(ms)
         th(scope="col") Score
       tbody
         -for(var prop in survey)
           tr
-            th(scope="row") #
+            th(scope="row") #{survey[prop]['userId']}
             th(scope="row") #{survey[prop]['ping']}
-            th(scope="row") #{survey[prop]['inlineRadioOptions3']}
+            th(scope="row") #{survey[prop]['inlineRadioOptions1']}
