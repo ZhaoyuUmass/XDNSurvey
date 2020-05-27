@@ -1,13 +1,16 @@
 var express = require('express');
 var router = express.Router();
 
+const dbName = "survey";
+const collName = "answer";
+
 /* GET users listing. */
 router.get('/', function(req, res) {
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
-        var dbo = db.db("survey");
+        var dbo = db.db(dbName);
 
-        dbo.collection("result").find().toArray( function(err, result) {
+        dbo.collection(collName).find().toArray( function(err, result) {
             if (err) throw err;
             // console.log("result:"+JSON.stringify(result));
             // result.forEach(JSON.stringify);
@@ -25,9 +28,9 @@ router.post('/', function(req, res){
     // console.log(result);
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
-        var dbo = db.db("survey");
+        var dbo = db.db(dbName);
 
-        dbo.collection("result").insertOne(result, function(err, res) {
+        dbo.collection(collName).insertOne(result, function(err, res) {
             if (err) throw err;
             // console.log("Document inserted:"+result);
             // db.close();
@@ -38,12 +41,12 @@ router.post('/', function(req, res){
 
 
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/survey";
+var url = "mongodb://localhost:27017/"+dbName;
 MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     console.log("Database created!");
-    var dbo = db.db("survey");
-    dbo.createCollection("result", function(err, res) {
+    var dbo = db.db(dbName);
+    dbo.createCollection(collName, function(err, res) {
         if (err) throw err;
         console.log("Collection created!");
         db.close();
