@@ -2,15 +2,28 @@ doctype html
 html
     head
         title= title
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
         link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css')
-        link(rel='stylesheet', href='/stylesheets/style.css')
+        style.
+            body {
+              padding: 50px;
+              font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+            }
+
+            a {
+              color: #00B7FF;
+            }
         script(type="text/javascript").
             function validateForm() {
                 var finished = true;
-                for (var i = 1; i < 6; i++) {
+                for (var i = 1; i < 2; i++) {
                     if (document.getElementById("answer")["inlineRadioOptions" + i].value == 0)
                         finished = false;
                 }
+                // alert(document.getElementById("userId").value);
+                // console.log(document.getElementById("userId").value);
+                if ((document.getElementById("userId").value == ''))
+                    finished = false;
                 // window.alert("finished:" + finished);
                 if (!finished) {
                     window.alert("Please finish filling out the form before submission.");
@@ -23,30 +36,47 @@ html
                 }
             }
     body
-
-        h3=title
+        h3 Online game experience study
         hr
-        div
-            h4= 'Server ('+sub+".xdnfirst.xyz)"
-        hr
-        form(class="form-group" id="answer" action="/survey/"+id+"/"+sub method="POST" onsubmit="return validateForm()")
-            each question,index in questions
-                div(class="card")
-                    div(class="card-body")
-                        p(class="lead")=question
-                        div(class='form-check form-check-inline')
-                            input(class="form-check-input" type="radio" name="inlineRadioOptions"+index id="inlineRadio1"+index value=1)
-                            label(class="form-check-label" for="inlineRadio1") 1 (Strongly dissatisfied)
-                        each val in [ 2, 3, 4, 5, 6, 7, 8, 9]
-                            div(class='form-check form-check-inline')
-                                input(class="form-check-input" type="radio" name="inlineRadioOptions"+index id="inlineRadio"+val+index value=val)
-                                label(class="form-check-label" for="inlineRadio"+val)=val
-                        div(class='form-check form-check-inline')
-                            input(class="form-check-input" type="radio" name="inlineRadioOptions"+index id="inlineRadio10"+index value=10)
-                            label(class="form-check-label" for="inlineRadio10") 10 (Strongly satisfied)
+        form(class="form-group" id="answer" action="/sv/thanks" method="POST" onsubmit="return validateForm()")
+            div(class="card")
+                div(class="card-body")
+                    label(for="email") 1. Your email address (*)
+                    input(type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email")
+                    small(id="emailHelp" class="form-text text-muted") Please enter your email address
+            div(class="card")
+                div(class="card-body")
+                    label(for="zipCode") 2. Your zip code (*)
+                    input(type="digit" class="form-control" id="zipCode" aria-describedby="emailHelp" placeholder="Enter zip code")
+                    small(id="zipHelp" class="form-text text-muted") Please enter your zip code
+            div(class="card")
+                div(class="card-body")
+                    label(for="game") 3. Please list any games you ever played before
+                    textarea(type="text" class="form-control" row=3)
+                    small(id="gameHelp" class="form-text text-muted") RPG and shooting games are more preferred
+            div(class="card")
+                div(class="card-body")
+                    label(for="time") 4. Please choose your time availability to participate our study
+                    br
+                    div(class='form-check')
+                        input(class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio11" value=1)
+                        label(class="form-check-label" for="inlineRadio1") 10:00am-11:00am, Aug 31,2020
+                    br
+                    div(class='form-check')
+                        input(class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio12" value=2)
+                        label(class="form-check-label" for="inlineRadio2") 10:00am-11:00am, Sep 1,2020
+                    br
+                    div(class='form-check')
+                        input(class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio13" value=3)
+                        label(class="form-check-label" for="inlineRadio3") 10:00am-11:00am, Sep 2,2020
+                    br
+                    div(class='form-check')
+                        input(class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio14" value=4)
+                        label(class="form-check-label" for="inlineRadio4") 10:00am-11:00am, Sep 3,2020
+                    br
+                    div(class='form-check')
+                        input(class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio15" value=5)
+                        label(class="form-check-label" for="inlineRadio5") 10:00am-11:00am, Sep 4,2020
+            hr
             div
                 button(type="submit" class="btn btn-primary") Submit
-                div(class="text-right")
-                    // button(href="javascript:history.back()" class="btn btn-secondary") Back
-                    a(class="lead" href="javascript:history.back()") Go Back
-

@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var dbRouter = require('./routes/db');
+var svRouter = require('./routes/sv');
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use(jsonParser);
 // uncomment to run
 app.use('/', indexRouter);
 app.use('/db', dbRouter);
+app.use('/sv', svRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
