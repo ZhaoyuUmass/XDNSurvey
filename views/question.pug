@@ -16,14 +16,18 @@ html
         script(type="text/javascript").
             function validateForm() {
                 var finished = true;
-                for (var i = 1; i < 2; i++) {
-                    if (document.getElementById("answer")["inlineRadioOptions" + i].value == 0)
+
+                for (var i = 0; i < 2; i++) {
+                    // window.alert("result"+i+":"+document.getElementById("answer")["inlineRadioOptions" + i].value);
+                    if (document.getElementById("answer")["inlineRadioOptions" + i].value == '')
                         finished = false;
                 }
-                // alert(document.getElementById("userId").value);
-                // console.log(document.getElementById("userId").value);
-                if ((document.getElementById("userId").value == ''))
+                if (document.getElementById("answer")["email"].value == '')
                     finished = false;
+                if (document.getElementById("answer")["name"].value == '')
+                    finished = false;
+                // window.alert("email:"+document.getElementById("answer")["email"].value);
+                // window.alert("name:"+document.getElementById("answer")["name"].value);
                 // window.alert("finished:" + finished);
                 if (!finished) {
                     window.alert("Please finish filling out the form before submission.");
@@ -42,13 +46,13 @@ html
             div(class="card")
                 div(class="card-body")
                     label(for="email") 1. Your email address (*)
-                    input(type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email")
-                    small(id="emailHelp" class="form-text text-muted") Please enter your email address
+                    input(type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email")
+                    small(id="emailHelp" class="form-text text-muted") Please enter your email address which you will check regularly
             div(class="card")
                 div(class="card-body")
-                    label(for="zipCode") 2. Name (*)
-                    input(type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter name")
-                    small(id="nameHelp" class="form-text text-muted") Please enter your name
+                    label(for="name") 2. Name (*)
+                    input(type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp" placeholder="Enter name")
+                    small(id="nameHelp" class="form-text text-muted") Please enter your name (for the use of sending a gift card in the future)
             div(class="card")
                 div(class="card-body")
                     label(for="age") 3. Are you over 18 years old? (*)
@@ -62,31 +66,16 @@ html
             div(class="card")
                 div(class="card-body")
                     label(for="game") 4. Please list any games you ever played before
-                    textarea(type="text" class="form-control" row=3)
+                    textarea(type="text" class="form-control" name="game" row=3)
                     small(id="gameHelp" class="form-text text-muted") RPG and shooting games are more preferred
             div(class="card")
                 div(class="card-body")
                     label(for="time") 5. Please choose your time availability to participate our study
-                    br
-                    div(class='form-check')
-                        input(class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio11" value=1)
-                        label(class="form-check-label" for="inlineRadio1") 10:00am-11:00am, Aug 31,2020
-                    br
-                    div(class='form-check')
-                        input(class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio12" value=2)
-                        label(class="form-check-label" for="inlineRadio2") 10:00am-11:00am, Sep 1,2020
-                    br
-                    div(class='form-check')
-                        input(class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio13" value=3)
-                        label(class="form-check-label" for="inlineRadio3") 10:00am-11:00am, Sep 2,2020
-                    br
-                    div(class='form-check')
-                        input(class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio14" value=4)
-                        label(class="form-check-label" for="inlineRadio4") 10:00am-11:00am, Sep 3,2020
-                    br
-                    div(class='form-check')
-                        input(class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio15" value=5)
-                        label(class="form-check-label" for="inlineRadio5") 10:00am-11:00am, Sep 4,2020
+                    each day,index in dates
+                        br
+                        div(class='form-check')
+                            input(class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio1"+index value=index)
+                            label(class="form-check-label" for="inlineRadio1")=day
             hr
             div
                 button(type="submit" class="btn btn-primary") Submit
