@@ -5,7 +5,7 @@ var express = require('express');
 var router = express.Router();
 
 
-USER_CASE_STUDY_STRING_DATES = {
+const USER_CASE_STUDY_STRING_DATES = {
 	1: "10:00am-11:00am, Nov 9, 2020",
 	2: "10:00am-11:00am, Nov 11, 2020",
 	3: "10:00am-11:00am, Nov 13, 2020",
