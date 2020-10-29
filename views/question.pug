@@ -47,12 +47,12 @@ html
                 div(class="card-body")
                     label(for="email")=q1
                     input(type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email")
-                    small(id="emailHelp" class="form-text text-muted") Please enter your email address which you will check regularly
+                    small(id="emailHelp" class="form-text text-muted")=q1_exp
             div(class="card")
                 div(class="card-body")
                     label(for="name")=q2
                     input(type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp" placeholder="Enter name")
-                    small(id="nameHelp" class="form-text text-muted") Please enter your name (for the use of sending a gift card in the future)
+                    small(id="nameHelp" class="form-text text-muted")=q2_exp
             div(class="card")
                 div(class="card-body")
                     label(for="age")=q3
@@ -67,7 +67,7 @@ html
                 div(class="card-body")
                     label(for="game")=q4
                     textarea(type="text" class="form-control" name="game" row=3)
-                    small(id="gameHelp" class="form-text text-muted") RPG and shooting games are more preferred
+                    small(id="gameHelp" class="form-text text-muted")=q4_exp
             div(class="card")
                 div(class="card-body")
                     label(for="time")=q5

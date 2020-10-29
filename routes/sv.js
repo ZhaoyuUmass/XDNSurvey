@@ -14,10 +14,14 @@ const USER_CASE_STUDY_STRING_DATES = {
 };
 
 const USER_CASE_STUDY_STRING_Q1 = "1. Email address.";
+const USER_CASE_STUDY_STRING_Q1_EXPLANATION = "Please enter your email address which you will check regularly.";
 const USER_CASE_STUDY_STRING_Q2 = "2. Name.";
+const USER_CASE_STUDY_STRING_Q2_EXPLANATION="Please enter your name (for the use of sending a gift card in the future).";
 const USER_CASE_STUDY_STRING_Q3 = "3. Are you over 18 years old?";
 const USER_CASE_STUDY_STRING_Q4 = "4. Please list any games you ever played before.";
+const USER_CASE_STUDY_STRING_Q4_EXPLANATION = "RPG and shooting games are more preferred";
 const USER_CASE_STUDY_STRING_Q5 = "5. Please choose your time availability to participate in our study.";
+
 
 const USER_CASE_STUDY_STRING_THANK_MESSAGE
 	= "Please check your email for further instructions on how to participate in our survey.";
@@ -29,9 +33,12 @@ router.get('/', function(req, res) {
 		{	title: 'Questionnaires',
 			dates: USER_CASE_STUDY_STRING_DATES,
 			q1: USER_CASE_STUDY_STRING_Q1,
+			q1_exp: USER_CASE_STUDY_STRING_Q1_EXPLANATION,
 			q2: USER_CASE_STUDY_STRING_Q2,
+			q2_exp: USER_CASE_STUDY_STRING_Q2_EXPLANATION,
 			q3: USER_CASE_STUDY_STRING_Q3,
 			q4: USER_CASE_STUDY_STRING_Q4,
+			q4_exp: USER_CASE_STUDY_STRING_Q4_EXPLANATION,
 			q5: USER_CASE_STUDY_STRING_Q5
 		});
 });
