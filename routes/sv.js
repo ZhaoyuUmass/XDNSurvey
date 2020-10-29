@@ -5,7 +5,7 @@ var express = require('express');
 var router = express.Router();
 
 
-DATES = {
+USER_CASE_STUDY_STRING_DATES = {
 	1: "10:00am-11:00am, Nov 9, 2020",
 	2: "10:00am-11:00am, Nov 11, 2020",
 	3: "10:00am-11:00am, Nov 13, 2020",
@@ -13,9 +13,27 @@ DATES = {
 	5: "10:00am-11:00am, Nov 15, 2020"
 };
 
+const USER_CASE_STUDY_STRING_Q1 = "1. Email address.";
+const USER_CASE_STUDY_STRING_Q2 = "2. Name.";
+const USER_CASE_STUDY_STRING_Q3 = "3. Are you over 18 years old?";
+const USER_CASE_STUDY_STRING_Q4 = "4. Please list any games you ever played before.";
+const USER_CASE_STUDY_STRING_Q5 = "5. Please choose your time availability to participate in our study.";
+
+const USER_CASE_STUDY_STRING_THANK_MESSAGE
+	= "Please check your email for further instructions on how to participate in our survey.";
+
+
 /* GET users listing. */
 router.get('/', function(req, res) {
-	res.render('question', {title: 'Questionnaires', dates: DATES, hello:'world'});
+	res.render('question',
+		{	title: 'Questionnaires',
+			dates: USER_CASE_STUDY_STRING_DATES,
+			q1: USER_CASE_STUDY_STRING_Q1,
+			q2: USER_CASE_STUDY_STRING_Q2,
+			q3: USER_CASE_STUDY_STRING_Q3,
+			q4: USER_CASE_STUDY_STRING_Q4,
+			q5: USER_CASE_STUDY_STRING_Q5
+		});
 });
 
 router.post('/thanks', function(req, res) {
@@ -33,7 +51,7 @@ router.post('/thanks', function(req, res) {
 			if (err) throw err;
 			// console.log("Document inserted:"+result);
 			// db.close();
-			res.render('thank', {});
+			res.render('thank', {THANK: USER_CASE_STUDY_STRING_THANK_MESSAGE});
 		});
 	});
 });
