@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
+//var indexRouter = require('./routes/index');
 var dbRouter = require('./routes/db');
 var svRouter = require('./routes/sv');
 
@@ -26,7 +26,7 @@ app.use(urlencodeParser);
 app.use(jsonParser);
 
 // uncomment to run
-app.use('/', indexRouter);
+//app.use('/', indexRouter);
 app.use('/db', dbRouter);
 app.use('/sv', svRouter);
 
