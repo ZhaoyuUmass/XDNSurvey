@@ -24,7 +24,7 @@ const USER_CASE_STUDY_STRING_Q5 = "5. Please choose your time availability to pa
 
 
 const USER_CASE_STUDY_STRING_THANK_MESSAGE
-	= "Please check your email for further instructions on how to participate in our survey.";
+	= "You will receive our notification in the next 24-48 hours.";
 
 
 /* GET users listing. */
