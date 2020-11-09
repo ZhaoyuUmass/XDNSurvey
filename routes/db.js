@@ -26,7 +26,8 @@ router.post('/', function(req, res){
     result.time = new Date().getTime();
     result.serverIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 	console.log(result.latency);
-	console.log(min(result.latency));
+	var arr = result.latency.split(",");
+	result.minLat = Math.min(arr);
 
     // console.log(result);
     MongoClient.connect(url, function(err, db) {
