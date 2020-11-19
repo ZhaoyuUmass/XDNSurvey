@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 const dbName = "survey";
-const collName = "user_study";
+// const collName = "user_study";
+const collName = "alpha";
 
 /* GET users listing. */
 router.get('/', function(req, res) {
