@@ -3,7 +3,7 @@ var router = express.Router();
 
 const dbName = "survey";
 // const collName = "user_study";
-const collName = "alpha";
+const collName = "beta";
 
 /* GET users listing. */
 router.get('/', function(req, res) {
