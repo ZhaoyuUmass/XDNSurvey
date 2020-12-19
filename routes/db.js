@@ -62,11 +62,16 @@ MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     console.log("Database created!");
     var dbo = db.db(dbName);
-    dbo.createCollection(collName, function(err, res) {
+    dbo.createCollection(coll1, function(err, res) {
         if (err) throw err;
-        console.log("Collection created!");
+        console.log("Collection "+coll1+" created!");
         db.close();
     });
+	dbo.createCollection(coll2, function(err, res) {
+		if (err) throw err;
+		console.log("Collection "+coll2+" created!");
+		db.close();
+	});
 });
 
 
