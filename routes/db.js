@@ -5,7 +5,7 @@ const dbName = "xdn";
 // const collName = "user_study";
 // const collName = "beta";
 const idx = 0;
-const coll1 = 'traditional'+idx;
+const coll1 = 'trad'+idx;
 const coll2 = 'cloud'+idx;
 const windows = '50.19.96.96';
 
@@ -21,7 +21,7 @@ router.get('/', function(req, res) {
         if (err) throw err;
         var dbo = db.db(dbName);
 
-        dbo.collection(collName).find().toArray( function(err, result) {
+        dbo.collection(coll1).find().toArray( function(err, result) {
             if (err) throw err;
             // console.log("result:"+JSON.stringify(result));
             // result.forEach(JSON.stringify);
