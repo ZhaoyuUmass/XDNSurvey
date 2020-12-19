@@ -1,9 +1,19 @@
 var express = require('express');
 var router = express.Router();
 
-const dbName = "survey";
+const dbName = "xdn";
 // const collName = "user_study";
-const collName = "beta";
+// const collName = "beta";
+const idx = 0;
+const coll1 = 'traditional'+idx;
+const coll2 = 'cloud'+idx;
+const windows = '50.19.96.96';
+
+function getCollName(ip){
+	if (ip.endsWith(windows))
+		return coll2;
+	return coll1;
+}
 
 /* GET users listing. */
 router.get('/', function(req, res) {
@@ -19,13 +29,13 @@ router.get('/', function(req, res) {
             res.render('result', {survey: result});
         });
     });
-
 });
 
 router.post('/', function(req, res){
     var result = req.body;
     result.time = new Date().getTime();
     result.serverIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+	var collName = getCollName(result.serverIp);
 	console.log(result.latency);
 	var arr = result.latency.split(",").map(Number);
 	console.log(arr);
