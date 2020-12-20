@@ -36,15 +36,19 @@ router.post('/', function(req, res){
     result.time = new Date().getTime();
     result.serverIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 	var collName = getCollName(result.serverIp);
+	console.log("collName:", collName);
+
 	console.log(result.latency);
 	var arr = result.latency.split(",").map(Number);
-	console.log(arr);
+	// console.log(arr);
 	result.minLat = Math.min(...arr);
 
 	console.log(result);
+
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db(dbName);
+		console.log("DB ",dbName, "connected!");
 
         dbo.collection(collName).insertOne(result, function(err, res) {
             if (err) throw err;
@@ -57,7 +61,7 @@ router.post('/', function(req, res){
 
 
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/"+dbName;
+const url = "mongodb://localhost:27017/"+dbName;
 MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     console.log("Database created!");
