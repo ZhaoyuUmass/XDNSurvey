@@ -26,6 +26,8 @@ html
                     finished = false;
                 if (document.getElementById("answer")["name"].value == '')
                     finished = false;
+                if (document.getElementById("answer")["zip"].value == '')
+                    finished = false;
                 // window.alert("email:"+document.getElementById("answer")["email"].value);
                 // window.alert("name:"+document.getElementById("answer")["name"].value);
                 // window.alert("finished:" + finished);
@@ -40,8 +42,10 @@ html
                 }
             }
     body
-        h3 Online game experience study
+        h3 Online gaming experience user study
         hr
+        p.
+            Thanks for your interest in this study. To participate in this study, please make sure you are currently living in United States and have a Windows laptop/desktop with a keyboard and mouse (NOTE: touchpad does not work for this study).
         form(class="form-group" id="answer" action="/sv/thanks" method="POST" onsubmit="return validateForm()")
             div(class="card")
                 div(class="card-body")
@@ -76,6 +80,22 @@ html
                         div(class='form-check')
                             input(class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio1"+index value=index)
                             label(class="form-check-label" for="inlineRadio1")=day
-            hr
+            div(class="card")
+                div(class="card-body")
+                    label(for="zip")=q6
+                    input(id="zip" class="form-control" name="zip" type="text" inputmode="numeric" pattern="^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$" placeholder="01002")
+                    small(id="zipHelp" class="form-text text-muted")=q6_exp
+
+            div(class="card")
+                div(class="card-body")
+                    label(for="age")=q7
+                    br
+                    div(class='form-check form-check-inline')
+                        input(class="form-check-input" type="radio" name="inlineRadioOptions1" id="yes" value=1)
+                        label(class="form-check-label" for="yes") yes
+                    div(class='form-check form-check-inline')
+                        input(class="form-check-input" type="radio" name="inlineRadioOptions1" id="no" value=0)
+                        label(class="form-check-label" for="no") no
+
             div
                 button(type="submit" class="btn btn-primary") Submit
