@@ -57,6 +57,8 @@ router.post('/thanks', function(req, res) {
 	result.agent = req.get('user-agent');
 	result.time = new Date();
 	console.log(result.inlineRadioOptions1);
+
+
 	console.log(result);
 
 	MongoClient.connect(url, function(err, db) {
@@ -69,6 +71,9 @@ router.post('/thanks', function(req, res) {
 			// db.close();
 			res.render('thank', {THANK: USER_CASE_STUDY_STRING_THANK_MESSAGE});
 		});
+
+		var c = dbo.collection(dateColl);
+		c.deleteOne({"time": result.inlineRadioOptions1});
 	});
 });
 
