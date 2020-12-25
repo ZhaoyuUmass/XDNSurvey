@@ -84,7 +84,6 @@ MongoClient.connect(url, function(err, db) {
 	dbo.createCollection(collName, function(err, res) {
 		if (err) throw err;
 		console.log("Collection created!");
-		db.close();
 	});
 
 	// load dates from DB
@@ -92,7 +91,10 @@ MongoClient.connect(url, function(err, db) {
 	c.find().toArray(function(err, result) {
 		if (err) throw err;
 		console.log(result);
-		db.close();
+		for (var i=0; i<result.length; i++){
+			USER_CASE_STUDY_STRING_DATES[i] = result[i];
+		}
+		console.log(USER_CASE_STUDY_STRING_DATES);
 	});
 
 });
