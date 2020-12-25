@@ -4,22 +4,15 @@
 var express = require('express');
 var router = express.Router();
 
-
 //const USER_CASE_STUDY_STRING_DATES = {
-//	1: "10:00am-11:00am, Nov 9, 2020 ()",
-//	2: "10:00am-11:00am, Nov 11, 2020",
-//	3: "10:00am-11:00am, Nov 13, 2020",
-//	4: "10:00am-11:00am, Nov 14, 2020",
-//	5: "10:00am-11:00am, Nov 15, 2020"
+//	1: "Dec 26, 2020, 10:00am-11:00am, EST",
+//	2: "Dec 26, 2020, 11:00am-12:00am, EST",
+//	3: "Dec 26, 2020, 2:00pm-3:00pm, EST",
+//	4: "Dec 26, 2020, 3:00pm-4:00pm, EST",
+//	5: "Dec 26, 2020, 4:00pm-5:00pm, EST"
 //};
 
-const USER_CASE_STUDY_STRING_DATES = {
-	1: "Dec 26, 2020, 10:00am-11:00am, EST",
-	2: "Dec 26, 2020, 11:00am-12:00am, EST",
-	3: "Dec 26, 2020, 2:00am-3:00am, EST",
-	4: "Dec 26, 2020, 3:00am-4:00am, EST",
-	5: "Dec 26, 2020, 4:00am-5:00am, EST"
-};
+var USER_CASE_STUDY_STRING_DATES = {};
 
 const USER_CASE_STUDY_STRING_Q1 = "1. Email address.";
 const USER_CASE_STUDY_STRING_Q1_EXPLANATION = "Please enter your email address which you will check regularly.";
@@ -80,6 +73,7 @@ router.post('/thanks', function(req, res) {
 
 const dbName='survey';
 const collName = 'recruitment';
+const dateColl = "dates";
 
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/"+dbName;
@@ -92,6 +86,15 @@ MongoClient.connect(url, function(err, db) {
 		console.log("Collection created!");
 		db.close();
 	});
+
+	// load dates from DB
+	var c = dbo.collection(dateColl);
+	c.find().toArray(function(err, result) {
+		if (err) throw err;
+		console.log(result);
+		db.close();
+	});
+
 });
 
 
