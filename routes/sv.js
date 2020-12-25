@@ -88,7 +88,7 @@ MongoClient.connect(url, function(err, db) {
 
 	// load dates from DB
 	var c = dbo.collection(dateColl);
-	c.find().toArray(function(err, result) {
+	c.find({}, {'_id': false} ).toArray(function(err, result) {
 		if (err) throw err;
 		console.log(result);
 		for (var i=0; i<result.length; i++){
