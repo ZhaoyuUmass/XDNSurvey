@@ -56,9 +56,9 @@ router.post('/thanks', function(req, res) {
 	result.clientIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 	result.agent = req.get('user-agent');
 	result.time = new Date();
-	console.log(result.);
-
+	console.log(result.inlineRadioOptions1);
 	console.log(result);
+
 	MongoClient.connect(url, function(err, db) {
 		if (err) throw err;
 		var dbo = db.db(dbName);
