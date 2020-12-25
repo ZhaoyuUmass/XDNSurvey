@@ -56,6 +56,7 @@ router.post('/thanks', function(req, res) {
 	result.clientIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 	result.agent = req.get('user-agent');
 	result.time = new Date();
+	console.log(result.);
 
 	console.log(result);
 	MongoClient.connect(url, function(err, db) {
@@ -91,7 +92,7 @@ MongoClient.connect(url, function(err, db) {
 	c.find().toArray(function(err, result) {
 		if (err) throw err;
 		console.log(result);
-		for (var i=0; i<result.length; i++){
+		for (var i=0; i<result.length && i<5; i++){
 			USER_CASE_STUDY_STRING_DATES[i] = result[i].time;
 		}
 		console.log(USER_CASE_STUDY_STRING_DATES);
