@@ -73,22 +73,19 @@ router.post('/thanks', function(req, res) {
 		});
 
 		var c = dbo.collection(dateColl);
-		const r = c.deleteOne({"time": result.inlineRadioOptions1}, function(err, obj) {
+		c.deleteOne({"time": result.inlineRadioOptions1}, function(err, obj) {
 			if (err) throw err;
 			console.log("1 document deleted");
 			// fetch a new string from DB
-			c.find().toArray(function(err, result) {
-				if (err) throw err;
-				console.log(result);
-				for (var i=0; i<result.length && i<5; i++){
-					USER_CASE_STUDY_STRING_DATES[i] = result[i].time;
+			c.find().toArray(function(e, r) {
+				if (e) throw e;
+				console.log(r);
+				for (var i=0; i<r.length && i<5; i++){
+					USER_CASE_STUDY_STRING_DATES[i] = r[i].time;
 				}
 				console.log(USER_CASE_STUDY_STRING_DATES);
 			});
 		});
-
-
-
 	});
 });
 
