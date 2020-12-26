@@ -73,22 +73,22 @@ router.post('/thanks', function(req, res) {
 		});
 
 		var c = dbo.collection(dateColl);
-		const r = c.deleteOne({"time": result.inlineRadioOptions1});
-		if (r.deletedCount === 1) {
-			console.log("Successfully deleted one document.");
-		} else {
-			console.log("No documents matched the query. Deleted 0 documents.");
-		}
-
-		// TODO: fetch a new string from DB
-		c.find().toArray(function(err, result) {
+		const r = c.deleteOne({"time": result.inlineRadioOptions1}, function(err, obj) {
 			if (err) throw err;
-			console.log(result);
-			for (var i=0; i<result.length && i<5; i++){
-				USER_CASE_STUDY_STRING_DATES[i] = result[i].time;
-			}
-			console.log(USER_CASE_STUDY_STRING_DATES);
+			console.log("1 document deleted");
+			// fetch a new string from DB
+			c.find().toArray(function(err, result) {
+				if (err) throw err;
+				console.log(result);
+				for (var i=0; i<result.length && i<5; i++){
+					USER_CASE_STUDY_STRING_DATES[i] = result[i].time;
+				}
+				console.log(USER_CASE_STUDY_STRING_DATES);
+			});
 		});
+
+
+
 	});
 });
 
