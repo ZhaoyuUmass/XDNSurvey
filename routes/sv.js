@@ -80,6 +80,7 @@ router.post('/thanks', function(req, res) {
 			c.find().toArray(function(e, r) {
 				if (e) throw e;
 				console.log(r);
+				USER_CASE_STUDY_STRING_DATES = {};
 				for (var i=0; i<r.length && i<5; i++){
 					USER_CASE_STUDY_STRING_DATES[i] = r[i].time;
 				}
